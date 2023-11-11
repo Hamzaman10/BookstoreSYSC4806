@@ -1,5 +1,6 @@
-package model;
+package repository;
 
+import entity.BookStoreManagement;
 import org.springframework.data.repository.CrudRepository;
 
 public interface BookStoreManagementRepository extends CrudRepository<BookStoreManagement, Integer>{

@@ -1,6 +1,8 @@
 package model;
 
-import java.util.ArrayList;
+import entity.Book;
+import entity.BookStoreManagement;
+
 import java.util.Collection;
 
 public class Owner extends User{

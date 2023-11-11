@@ -1,5 +1,7 @@
 package model;
 
+import entity.Book;
+
 import java.util.ArrayList;
 
 public class Customer extends User{

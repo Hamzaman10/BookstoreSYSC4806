@@ -1,8 +1,10 @@
-package model;
+package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+
+import entity.Book;
 import jakarta.persistence.*;
 
 @Entity

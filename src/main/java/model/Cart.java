@@ -1,11 +1,9 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import entity.Book;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Cart {
     // The cart uses a map to keep track of the books and their quantities.

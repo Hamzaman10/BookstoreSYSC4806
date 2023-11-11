@@ -1,13 +1,21 @@
-package model;
+package application;
 
+import entity.Book;
+import entity.BookStoreManagement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import repository.BookRepository;
+import repository.BookStoreManagementRepository;
 
 @SpringBootApplication
+@EntityScan("entity")
+@EnableJpaRepositories("repository")
 public class AccessingDataJpaApplication {
     private static final Logger log = LoggerFactory.getLogger(AccessingDataJpaApplication.class);
 

@@ -1,5 +1,7 @@
 package model;
 
+import entity.Book;
+import entity.BookStoreManagement;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

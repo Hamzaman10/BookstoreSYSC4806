@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Map;
+import entity.Book;
 
 /**
  * Instances of PaymentProcessor are responsible for processing transactions of items in shopping cart.
