@@ -10,27 +10,29 @@ import java.util.Collection;
 public class Owner extends User implements Serializable {
 
     @OneToOne
-    BookStoreManagement ownersStore = new BookStoreManagement();
+    @JoinColumn(name = "owners_store_id", referencedColumnName = "id")
+    private BookStoreManagement ownersStore;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue
+    private long id;
 
     public Owner(){};
-    public Owner(String email, String phoneNumber, String username, String password, int id, String name, String address) {
-        super(email, phoneNumber, username, password, id, name, address);
+    public Owner(String email, String phoneNumber, String username, String password, String name, String address) {
+        super(email, phoneNumber, username, password, name, address);
+        this.setOwnersStore(new BookStoreManagement());
     }
 
     public void addBookToStore(Book book){
         ownersStore.addBook(book);
     }
 
-    public void removeBookFromStore(Book book){
-        ownersStore.removeBook(book.getIsbn());
+    public void removeBookFromStore(long id){
+        ownersStore.removeBook(id);
     }
 
-    public void updateStoreQuantity(int isbn, int amount){
-        ownersStore.updateQuantity(isbn, amount);
+    public void updateStoreQuantity(long id, int amount){
+        ownersStore.updateQuantity(id, amount);
     }
 
     public Collection<Book> getBookStore(){
@@ -44,10 +46,10 @@ public class Owner extends User implements Serializable {
         this.ownersStore = store;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-    public int getId() {
+    public long getId() {
         return id;
     }
 }

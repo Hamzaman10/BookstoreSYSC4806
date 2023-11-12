@@ -3,13 +3,16 @@ package model;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
+
 import jakarta.persistence.*;
 
 @Entity
 public class BookStoreManagement implements Serializable{
 
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     private Collection<Book> bookList;
 
@@ -18,10 +21,9 @@ public class BookStoreManagement implements Serializable{
     }
 
     @Id
-    @GeneratedValue
-    public Integer getId() {return this.id;}
+    public long getId() {return this.id;}
 
-    public void setId(Integer id) {this.id = id;}
+    public void setId(long id) {this.id = id;}
 
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     public Collection<Book> getBookList() {return bookList;}
@@ -38,7 +40,7 @@ public class BookStoreManagement implements Serializable{
     }
 
     //
-    public void updateQuantity(int isbn, int amountToAdd) {
+    public void updateQuantity(long id, int amountToAdd) {
         if (amountToAdd <= 0) {
             System.out.println("Please enter a number greater than 0");
         }
@@ -46,7 +48,7 @@ public class BookStoreManagement implements Serializable{
         else {
             Book bookToUpdate = null;
             for (Book book : bookList) {
-                if (book.getIsbn() == isbn) {
+                if (book.getId() == id) {
                     bookToUpdate = book;
                     break; // Stop searching once the book is found
                 }
@@ -54,14 +56,14 @@ public class BookStoreManagement implements Serializable{
                 bookToUpdate.addQuantity(amountToAdd);
                 System.out.println("Quantity updated successfully.");
             }
-            else{System.out.println("Book with ISBN " + isbn + " not found in inventory.");}
+            else{System.out.println("Book with ISBN " + id  + " not found in inventory.");}
         }
     }
 
-    public void removeBook(int isbn){
+    public void removeBook(long id){
         Book bookToDelete = null;
             for (Book book : bookList) {
-                if (book.getIsbn()== isbn) {
+                if (Objects.equals(book.getId(), id)) {
                     bookToDelete = book;
                     break; // Stop searching once the book is found
                 }
@@ -69,7 +71,7 @@ public class BookStoreManagement implements Serializable{
                 getBookList().remove(bookToDelete);
                 System.out.println("book deleted successfully.");
             }
-            else{System.out.println("Book with ISBN " + isbn + " not found in inventory.");}
+            else{System.out.println("Book with ISBN " + id  + " not found in inventory.");}
     }
 
     @Override
