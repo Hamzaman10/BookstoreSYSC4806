@@ -14,6 +14,17 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private CartRepository cartRepository;
+
+    @PostMapping
+    public Customer createCustomer(@RequestBody Customer newCustomer){
+        Cart customerCart = new Cart();
+        cartRepository.save(customerCart);
+        newCustomer.setCart(customerCart);
+        return customerRepository.save(newCustomer);
+    }
+
     @GetMapping("/{customerId}")
     public Customer viewCustomer(@PathVariable Integer customerId) {
         return customerRepository.findById(customerId).orElse(null);
