@@ -8,8 +8,11 @@ import jakarta.persistence.*;
 @Entity
 public class BookStoreManagement implements Serializable{
 
+    private Long id;
+
     @Id
-    private Integer id;
+    @GeneratedValue
+    public Long getId() {return this.id;}
 
     private Collection<Book> bookList;
 
@@ -17,11 +20,7 @@ public class BookStoreManagement implements Serializable{
         bookList = new HashSet();
     }
 
-    @Id
-    @GeneratedValue
-    public Integer getId() {return this.id;}
-
-    public void setId(Integer id) {this.id = id;}
+    public void setId(Long id) {this.id = id;}
 
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     public Collection<Book> getBookList() {return bookList;}

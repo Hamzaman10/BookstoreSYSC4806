@@ -37,7 +37,7 @@ public class AccessingDataJpaApplication {
             log.info("");
 
             // fetch an individual BuddyInfo by ID
-            Book book1 = bookRepository.findById(1);
+            Book book1 = bookRepository.findById(1L);
             log.info("Book found with findById(1):");
             log.info("--------------------------------");
             log.info(book1.toString());
@@ -53,7 +53,7 @@ public class AccessingDataJpaApplication {
 
             //Save a BookStoreManagement that contains a Book
             BookStoreManagement bookStoreTest = new BookStoreManagement();
-            bookStoreTest.addBook(bookRepository.findById(1));
+            bookStoreTest.addBook(bookRepository.findById(1L));
             log.info("LINE 55");
             log.info(bookStoreTest.toString());
             bookStoreRepository.save(bookStoreTest);
@@ -61,14 +61,14 @@ public class AccessingDataJpaApplication {
 
             log.info("LINE 56");
             // fetch an individual AddressBook by ID
-            BookStoreManagement bookStore2 = bookStoreRepository.findById(1);
+            BookStoreManagement bookStore2 = bookStoreRepository.findById(1L);
             log.info("BookStoreManagement found with findById(1):");
             log.info("--------------------------------");
             log.info(bookStore2.getBookList().toString());
             log.info("");
 
             // Save owner and make bookStoreTest his store
-            Owner owner1 = new Owner("owneremail", "12345", "Owner", "ImTheBoss",1, "Boss", "bossstreet");
+            Owner owner1 = new Owner("owneremail", "12345", "Owner", "ImTheBoss","Boss", "bossstreet");
             owner1.setOwnersStore(bookStoreTest);
             ownerRepository.save(owner1);
 
@@ -84,32 +84,41 @@ public class AccessingDataJpaApplication {
             cart1.setItems(null);
 
             //Save customer
-            Customer customer1 = new Customer("teste@mail", "12345", "testMan", "password", 3, "Man", "testAddress");
+            Customer customer1 = new Customer("teste@mail", "12345", "testMan", "password", "Man", "testAddress");
             customer1.setPurchaseHistory(null);
             customer1.setCart(cart1);
             cart1.setCustomer(customer1);
-            //cartRepository.save(cart1);
 
             customerRepository.save(customer1);
+            cartRepository.save(cart1);
 
             //Fetch customer by id
             Customer customerTest = customerRepository.findById(1);
             log.info("Customer found with findById(1):");
             log.info("--------------------------------");
-            log.info(customerTest.getName());
+            log.info("Customer Name: " + customerTest.getName());
             log.info("");
 
-            /*
+
             //Fetch cart by id
             Cart cartTest = cartRepository.findById(1);
             log.info("Cart found with findById(1):");
             log.info("--------------------------------");
-            log.info(cartTest.getCustomer().getName());
+            log.info("Customer Name: " + cartTest.getCustomer().getName());
             log.info("");
 
-             */
-
             //Fetch cart by customer
+            //Cart cartTest2 = cartRepository.findByCustomer(customer1);
+            log.info("Cart found with findByCustomer(customer1):");
+            log.info("--------------------------------");
+            //log.info("Customer Name: " + cartTest2.getCustomer().getName());
+            log.info("");
+
+            log.info("Testing :D");
+
+
+
+
 
 
 

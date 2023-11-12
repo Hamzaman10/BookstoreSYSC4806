@@ -3,7 +3,6 @@ package model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -14,11 +13,11 @@ public class Owner extends User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     public Owner(){};
-    public Owner(String email, String phoneNumber, String username, String password, int id, String name, String address) {
-        super(email, phoneNumber, username, password, id, name, address);
+    public Owner(String email, String phoneNumber, String username, String password, String name, String address) {
+        super(email, phoneNumber, username, password, name, address);
     }
 
     public void addBookToStore(Book book){
@@ -44,10 +43,10 @@ public class Owner extends User implements Serializable {
         this.ownersStore = store;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
 }

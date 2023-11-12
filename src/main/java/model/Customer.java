@@ -3,7 +3,6 @@ package model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,15 +15,15 @@ public class Customer extends User implements Serializable {
     private Cart cart;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
 
     public Customer(){
         super();
     };
 
-    public Customer(String email, String phoneNumber, String username, String password, int id, String name, String address) {
-        super(email, phoneNumber, username, password, id, name, address);
+    public Customer(String email, String phoneNumber, String username, String password, String name, String address) {
+        super(email, phoneNumber, username, password, name, address);
         this.cart = new Cart(this);
     }
 
@@ -62,11 +61,11 @@ public class Customer extends User implements Serializable {
     }
 
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
