@@ -21,7 +21,7 @@ public class viewController {
     }
 
     @PostMapping("/createOwnerFront/")
-    public Owner createOwner(@RequestBody Owner newOwner){
+    public Owner createOwner(@ModelAttribute Owner newOwner){
 
         return repo.save(newOwner);
     }
