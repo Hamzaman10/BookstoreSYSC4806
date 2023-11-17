@@ -45,8 +45,8 @@ public class Cart implements Serializable {
     // Empties the cart.
     public void clearCart() {
         for(Book book : items){
-        book.addQuantity(1);
-    }
+            book.addQuantity(1);
+        }
         items.clear();
     }
 
