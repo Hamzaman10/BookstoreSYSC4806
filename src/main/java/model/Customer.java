@@ -45,6 +45,11 @@ public class Customer extends User implements Serializable {
         }
     }
 
+    public void checkout(){
+        PaymentProcessor.processPayment(this,cart);
+        cart.clearItems();
+    }
+
     public Cart getCart() {
         return cart;
     }

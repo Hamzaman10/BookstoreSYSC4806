@@ -56,4 +56,13 @@ public class CustomerController {
         }
         return null;
     }
+
+    @PostMapping("/{customerId}/checkout")
+    public void checkout(@PathVariable Integer customerId){
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+        if(customer !=null){
+            customer.checkout();
+            customerRepository.save(customer);
+        }
+    }
 }
